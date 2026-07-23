@@ -19,8 +19,6 @@ export interface BoardState {
   // helpers
   getImage: (id: string) => BoardImage | undefined;
   getImageAt: (position: number) => BoardImage | undefined;
-  /** Every image's current slot, to roll back a failed drag. */
-  getPositions: () => SlotAssignment[];
 }
 
 function sortByPosition(images: BoardImage[]): BoardImage[] {
@@ -68,7 +66,4 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
   getImageAt: (position) =>
     get().images.find((img) => img.position === position),
-
-  getPositions: () =>
-    get().images.map((img) => ({ id: img.id, position: img.position })),
 }));
