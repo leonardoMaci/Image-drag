@@ -1,0 +1,17 @@
+/node_modules
+/.next
+/out
+/build
+*.tsbuildinfo
+next-env.d.ts
+
+# prisma / sqlite
+/prisma/dev.db
+/prisma/dev.db-journal
+
+# uploaded files (keep the folder, ignore its contents)
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+.DS_Store
+npm-debug.log*
