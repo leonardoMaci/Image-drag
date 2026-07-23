@@ -1,0 +1,33 @@
+// Prisma schema — SQLite for local-first development.
+// To switch to PostgreSQL: change provider to "postgresql" and set
+// DATABASE_URL to your Postgres connection string. The model is unchanged.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model BoardImage {
+  id               String   @id @default(cuid())
+  imageUrl         String
+  thumbnailUrl     String?
+  originalFileName String
+  description      String
+  altText          String?
+
+  width            Float
+  height           Float
+
+  /// Slot index in the board grid (0-based, row-major across GRID_COLUMNS).
+  position         Int      @default(0)
+
+  mimeType         String
+  fileSize         Int
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
